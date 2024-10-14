@@ -9,7 +9,8 @@
 <body <?php body_class(); ?>>
     <header>
         <div class="logo">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Logo du site">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo_nathalie_mota.png" 
+        alt="Logo <?php echo bloginfo('name'); ?>">
         </div>
         <nav>
             <?php wp_nav_menu(array('theme_location' => 'menu-principal')); ?>
