@@ -8,11 +8,31 @@
 </head>
 <body <?php body_class(); ?>>
     <header>
+        <!-- Affichage du logo modifiable via le Customizer -->
         <div class="logo">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo_nathalie_mota.png" 
-        alt="Logo <?php echo bloginfo('name'); ?>">
+            <a href="<?php echo home_url(); ?>">
+                <?php 
+                if ( has_custom_logo() ) {
+                    the_custom_logo(); // Affiche le logo personnalisé défini dans le Customizer
+                } else {
+                    echo '<h1>' . get_bloginfo( 'name' ) . '</h1>'; // Affiche le titre du site si aucun logo n'est défini
+                }
+                ?>
+            </a>
         </div>
+        
+        <!-- Affichage du menu principal modifiable via le back-office -->
         <nav>
-            <?php wp_nav_menu(array('theme_location' => 'menu-principal')); ?>
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'menu-principal', // L'emplacement du menu que tu as défini dans functions.php
+                'container' => false,                // Pas de conteneur supplémentaire
+                'menu_class' => 'menu-principal',    // Classe CSS pour styliser le menu si nécessaire
+            ));
+            ?>
         </nav>
     </header>
+
+    <?php wp_footer(); ?>
+</body>
+</html>

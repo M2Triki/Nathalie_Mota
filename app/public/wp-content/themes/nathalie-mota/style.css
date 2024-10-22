@@ -11,28 +11,64 @@ Template: astra
 */
 
 /***** Import FONTS *****/
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-.space-mono-regular {
-  font-family: "Space Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
+/***** REGLAGES GENERAUX *****/
+body {
+  font-family: "Space Mono", sans-serif;
 }
 
-.space-mono-bold {
-  font-family: "Space Mono", monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Mono", sans-serif;
   font-weight: 700;
-  font-style: normal;
 }
 
-.space-mono-regular-italic {
-  font-family: "Space Mono", monospace;
-  font-weight: 400;
-  font-style: italic;
+/***** HEADER *****/
+.entry-header.ast-no-thumbnail.ast-no-title.ast-header-without-markup {
+  display: none; /* Cache complètement le header vide */
 }
 
-.space-mono-bold-italic {
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  font-style: italic;
+header {
+  display: flex;
+  justify-content: space-between; /* Permet de placer le logo à gauche et le menu à droite */
+  align-items: center; /* Aligne verticalement le contenu */
+  padding: 20px 40px; /* Padding de 20px en haut/bas et 40px sur les côtés */
+  background-color: #f8f8f8; /* Couleur de fond du header */
+}
+
+/* Logo à gauche */
+header .logo img {
+  max-width: 216px; /* Limite la taille du logo (ajuste selon tes besoins) */
+  height: auto;
+}
+
+/* Menu à droite */
+header nav {
+  display: flex;
+}
+
+.menu-principal {
+  list-style: none; /* Supprime les puces des éléments de menu */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Affiche les éléments de menu en ligne */
+}
+
+.menu-principal li {
+  margin-left: 20px; /* Espacement entre les éléments de menu */
+}
+
+.menu-principal a {
+  text-decoration: none; /* Supprime le soulignement des liens */
+  color: #333; /* Couleur du texte des éléments de menu */
+  padding: 10px 15px; /* Padding autour des éléments du menu */
+  transition: color 0.3s ease; /* Animation douce pour le changement de couleur */
+}
+
+.menu-principal a:hover {
+  font-weight: 800;
 }
