@@ -1,9 +1,15 @@
 <footer>
-    <div class="footer-content">
-        <p>&copy; 2024 Mon Site | Tous droits réservés</p>
-        <a href="#" id="open-contact-modal">Contactez-nous</a>
-    </div>
-    <?php wp_footer(); ?>
+    <?php if ( has_nav_menu( 'footer' ) ) : ?>
+        <nav class="footer-nav">
+            <?php
+            wp_nav_menu( array(
+                'theme_location' => 'footer',
+                'container'      => false,
+                'menu_class'     => 'footer-menu',
+            ) );
+            ?>
+        </nav>
+    <?php endif; ?>
 </footer>
-</body>
-</html>
+
+<?php wp_footer(); ?>

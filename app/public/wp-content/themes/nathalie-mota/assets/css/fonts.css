@@ -4,9 +4,9 @@
   font-family: "Space Mono";
   font-style: normal;
   font-weight: 400;
-  src: url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Regular.woff2")
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Regular.woff2")
       format("woff2"),
-    url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Regular.woff")
+    url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Regular.woff")
       format("woff");
 }
 
@@ -15,9 +15,9 @@
   font-family: "Space Mono";
   font-style: italic;
   font-weight: 400;
-  src: url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Italic.woff2")
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Italic.woff2")
       format("woff2"),
-    url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Italic.woff")
+    url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Italic.woff")
       format("woff");
 }
 
@@ -26,9 +26,9 @@
   font-family: "Space Mono";
   font-style: normal;
   font-weight: 700;
-  src: url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Bold.woff2")
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Bold.woff2")
       format("woff2"),
-    url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-Bold.woff")
+    url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-Bold.woff")
       format("woff");
 }
 
@@ -37,8 +37,53 @@
   font-family: "Space Mono";
   font-style: italic;
   font-weight: 700;
-  src: url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-BoldItalic.woff2")
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-BoldItalic.woff2")
       format("woff2"),
-    url("/wp-content/themes/nathalie-mota/assets/fonts/SpaceMono-BoldItalic.woff")
+    url("/wp-content/themes/nathalie-mota/assets/fonts/spacemono/SpaceMono-BoldItalic.woff")
+      format("woff");
+}
+
+/***** Poppins *****/
+/* Poppins Regular */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Regular.woff2")
+      format("woff2"),
+    url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Regular.woff")
+      format("woff");
+}
+
+/* Poppins Italic */
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Italic.woff2")
+      format("woff2"),
+    url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Italic.woff")
+      format("woff");
+}
+
+/* Poppins Bold */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Bold.woff2")
+      format("woff2"),
+    url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-Bold.woff")
+      format("woff");
+}
+
+/* Poppins Bold Italic */
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 700;
+  src: url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-BoldItalic.woff2")
+      format("woff2"),
+    url("/wp-content/themes/nathalie-mota/assets/fonts/poppins/Poppins-BoldItalic.woff")
       format("woff");
 }

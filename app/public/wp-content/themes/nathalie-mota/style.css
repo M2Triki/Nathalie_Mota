@@ -72,3 +72,33 @@ header nav {
 .menu-principal a:hover {
   font-weight: 800;
 }
+
+/***** FOOTER *****/
+.footer-nav {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-menu {
+  list-style: none; /* Retirer les puces des éléments de menu */
+  margin: 0;
+  display: inline-flex; /* Les éléments s'affichent en ligne */
+  gap: 30px; /* Espacement entre les éléments de menu */
+}
+
+.footer-menu li {
+  margin: 0;
+}
+
+.footer-menu a {
+  text-decoration: none; /* Retirer le soulignement des liens */
+  color: #333; /* Couleur des liens, modifiable selon tes préférences */
+  font-weight: bold; /* Mettre les liens en gras pour plus de visibilité */
+  transition: color 0.3s ease; /* Animation douce pour le changement de couleur */
+}
+
+.footer-menu a:hover {
+  color: #0073e6; /* Couleur au survol */
+}

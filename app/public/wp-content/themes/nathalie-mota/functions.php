@@ -14,31 +14,40 @@
 define( 'CHILD_THEME_NATHALIE_MOTA_VERSION', '1.0.0' );
 
 /**
- * Enqueue styles
+ * Enqueue styles and scripts
  */
-function child_enqueue_styles() {
-
+function nathalie_mota_enqueue_styles_scripts() {
+    // Charger le style du thème parent (Astra)
     wp_enqueue_style( 'astra-theme-css', get_template_directory_uri() . '/style.css' );
+    
+    // Charger le style du thème enfant
     wp_enqueue_style( 'nathalie-mota-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_NATHALIE_MOTA_VERSION, 'all' );
+    
+    // Charger les polices locales (fonts.css)
     wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
-    wp_enqueue_script('script', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0', true);
+    
+    // Charger les scripts du thème enfant
+    wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0', true);
 }
-add_action( 'wp_enqueue_scripts', 'child_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'nathalie_mota_enqueue_styles_scripts' );
 
-add_action( 'wp_enqueue_script', 'child_enqueue_styles', 15 );
+/**
+ * Deregister Google Fonts from Astra
+ */
+function nathalie_mota_dequeue_google_fonts() {
+    wp_dequeue_style( 'astra-google-fonts' );
+}
+add_action( 'wp_enqueue_scripts', 'nathalie_mota_dequeue_google_fonts', 20 );
 
-
-// Enregistrer le menu principal pour le thème Nathalie Mota
+/**
+ * Register Menus
+ */
 function nathalie_mota_register_menus() {
     register_nav_menus(
         array(
-            'menu-principal' => __('Menu Principal', 'nathalie-mota')
+            'menu-principal' => __('Menu Principal', 'nathalie-mota'),
+            'footer' => __( 'Menu pied de page', 'nathalie-mota' )
         )
     );
 }
 add_action('after_setup_theme', 'nathalie_mota_register_menus');
-
-add_action( 'wp_enqueue_scripts', 'nathalie_mota_dequeue_google_fonts', 20 );
-function nathalie_mota_dequeue_google_fonts() {
-    wp_dequeue_style( 'astra-google-fonts' );
-}
