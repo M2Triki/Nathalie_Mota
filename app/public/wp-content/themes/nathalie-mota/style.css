@@ -24,7 +24,11 @@ h4,
 h5,
 h6 {
   font-family: "Space Mono", sans-serif;
-  font-weight: 700;
+}
+
+h1,
+h2 {
+  font-style: italic;
 }
 
 /***** HEADER *****/
@@ -34,39 +38,37 @@ h6 {
 
 header {
   display: flex;
-  justify-content: space-between; /* Permet de placer le logo à gauche et le menu à droite */
-  align-items: center; /* Aligne verticalement le contenu */
-  padding: 20px 40px; /* Padding de 20px en haut/bas et 40px sur les côtés */
-  background-color: #f8f8f8; /* Couleur de fond du header */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
 }
 
-/* Logo à gauche */
 header .logo img {
-  max-width: 216px; /* Limite la taille du logo (ajuste selon tes besoins) */
+  max-width: 216px;
   height: auto;
 }
 
-/* Menu à droite */
 header nav {
   display: flex;
 }
 
 .menu-principal {
-  list-style: none; /* Supprime les puces des éléments de menu */
+  list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Affiche les éléments de menu en ligne */
+  display: flex;
 }
 
 .menu-principal li {
-  margin-left: 20px; /* Espacement entre les éléments de menu */
+  margin-left: 20px;
 }
 
 .menu-principal a {
-  text-decoration: none; /* Supprime le soulignement des liens */
-  color: #333; /* Couleur du texte des éléments de menu */
-  padding: 10px 15px; /* Padding autour des éléments du menu */
-  transition: color 0.3s ease; /* Animation douce pour le changement de couleur */
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
 }
 
 .menu-principal a:hover {
@@ -79,13 +81,14 @@ header nav {
   height: 60px;
   align-items: center;
   justify-content: center;
+  border-top: solid 1px black;
 }
 
 .footer-menu {
-  list-style: none; /* Retirer les puces des éléments de menu */
+  list-style: none;
   margin: 0;
-  display: inline-flex; /* Les éléments s'affichent en ligne */
-  gap: 30px; /* Espacement entre les éléments de menu */
+  display: inline-flex;
+  gap: 30px;
 }
 
 .footer-menu li {
@@ -93,12 +96,18 @@ header nav {
 }
 
 .footer-menu a {
-  text-decoration: none; /* Retirer le soulignement des liens */
-  color: #333; /* Couleur des liens, modifiable selon tes préférences */
-  font-weight: bold; /* Mettre les liens en gras pour plus de visibilité */
-  transition: color 0.3s ease; /* Animation douce pour le changement de couleur */
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .footer-menu a:hover {
-  color: #0073e6; /* Couleur au survol */
+  color: #0073e6;
+}
+
+/***** ACCUEIL *****/
+.h1-accueil {
+  color: transparent;
+  -webkit-text-stroke: 2px white; /* Bords du texte en blanc */
 }
