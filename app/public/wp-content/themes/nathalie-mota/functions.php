@@ -51,3 +51,14 @@ function nathalie_mota_register_menus() {
     );
 }
 add_action('after_setup_theme', 'nathalie_mota_register_menus');
+
+/* Function hook Contact */
+function nathalie_mota_add_contact_menu_item($items, $args) {
+    // Vérifie que nous ajoutons l'élément uniquement au menu principal
+    if ($args->theme_location == 'menu-principal') {
+        // Ajoute l'élément "Contact" avec une classe personnalisée
+        $items .= '<li class="menu-item menu-item-contact"><a href="#" class="open-modal-contact">CONTACT</a></li>';
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'nathalie_mota_add_contact_menu_item', 10, 2);
