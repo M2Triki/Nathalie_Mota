@@ -25,6 +25,9 @@ function nathalie_mota_enqueue_styles_scripts() {
     
     // Charger les polices locales (fonts.css)
     wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
+
+    // Charger le CSS pour le modal de Contact
+    wp_enqueue_style( 'nathalie-mota-contact-css', get_stylesheet_directory_uri() . '/assets/css/contact.css', array(), null );
     
     // Charger les scripts du thème enfant
     wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0', true);

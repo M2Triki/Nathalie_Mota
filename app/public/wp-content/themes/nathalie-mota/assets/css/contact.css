@@ -1,0 +1,90 @@
+/***** CONTACT MODAL *****/
+/* Masquer le modal par défaut */
+.modal {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  z-index: 1000; /* Toujours au-dessus des autres éléments */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+}
+
+/* Contenu de la modale */
+.modal-content {
+  background-color: white;
+  position: relative;
+  margin: 3% auto;
+  top: 0;
+  padding: 20px 0;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+.modal-title {
+  background-image: url("../img/contact.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 110px;
+}
+
+/* Bouton de fermeture */
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Style du formulaire Contact Form 7 */
+.wpcf7-form input,
+.wpcf7-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  height: 50px;
+}
+
+/* Style pour le label Message du contact form */
+.wpcf7-form textarea {
+  width: 263px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.wpcf7-form p label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.wpcf7-form input[type="submit"] {
+  background-color: #ccc;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.wpcf7-form input[type="submit"]:hover {
+  background-color: #888;
+}
+
+.wpcf7 input.wpcf7-form-control:not([type="submit"]) {
+  width: 263px;
+  border-radius: 8px;
+}
