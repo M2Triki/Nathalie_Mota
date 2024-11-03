@@ -6,7 +6,7 @@
         <p><strong>Référence :</strong> <?php echo get_post_meta(get_the_ID(), 'reference', true); ?></p>
         <p><strong>Catégorie :</strong> <?php the_terms(get_the_ID(), 'categorie'); ?></p>
         <p><strong>Format :</strong> <?php the_terms(get_the_ID(), 'format'); ?></p>
-        <p><strong>Date de prise de vue :</strong> <?php echo get_the_date(); ?></p>
+        <p><strong>Année :</strong> <?php echo get_post_meta(get_the_ID(), 'annee', true); ?></p>
     </div>
 
     <div class="photo-info-right" style="width: 50%;">

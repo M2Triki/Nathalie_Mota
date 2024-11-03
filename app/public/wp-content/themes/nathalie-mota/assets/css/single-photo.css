@@ -1,10 +1,11 @@
-/*** Photos TEMPLATE ***/
+/***** Photos TEMPLATE *****/
 .photo-content-container {
   display: flex;
   flex-wrap: nowrap;
   margin-bottom: 20px;
 }
 
+/*** Section GAUCHE ***/
 .photo-info-left {
   padding: 20px;
   display: flex;
@@ -12,6 +13,11 @@
   justify-content: flex-end;
 }
 
+.photo-info-left p {
+  text-transform: uppercase;
+}
+
+/*** Section DROITE ***/
 .photo-info-right img {
   display: block;
   max-width: 100%;
@@ -25,6 +31,7 @@
   border-top: 1px solid #ccc;
 }
 
+/*** Photos apparentées ***/
 .related-photos {
   margin-top: 30px;
 }
