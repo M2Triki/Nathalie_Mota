@@ -65,3 +65,12 @@ function nathalie_mota_add_contact_menu_item($items, $args) {
     return $items;
 }
 add_filter('wp_nav_menu_items', 'nathalie_mota_add_contact_menu_item', 10, 2);
+
+
+// Fonction pour afficher les filtres dans la page d'accueil.
+function afficher_filtres_photos() {
+    ob_start();
+    get_template_part('template-parts/filtres');
+    return ob_get_clean();
+}
+add_shortcode('filtres_photos', 'afficher_filtres_photos');
