@@ -29,3 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 });
+
+// Pré remplir le champ "Réf photo" dans la PopUp contact
+jQuery(document).ready(function ($) {
+  $(".contact-modal-trigger").click(function (e) {
+    e.preventDefault();
+    var photoRef = $(this).data("photo-id");
+    $('#modal-contact input[name="ref-photo"]').val(photoRef);
+    $("#modal-contact").show();
+  });
+
+  $(".close").click(function () {
+    $("#modal-contact").hide();
+  });
+});

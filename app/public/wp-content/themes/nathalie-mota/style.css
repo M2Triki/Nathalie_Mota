@@ -112,7 +112,7 @@ header nav {
 
 /*** Filtres ***/
 .photo-filters {
-  padding: 50px 0; /* Padding pour bas et haut */
+  padding: 50px 0 10px 0; /* Padding pour bas et haut */
   display: flex;
   justify-content: space-between;
   align-items: center;
