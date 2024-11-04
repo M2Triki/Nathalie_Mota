@@ -33,7 +33,7 @@ function nathalie_mota_enqueue_styles_scripts() {
     wp_enqueue_style( 'nathalie-mota-single-photo-css', get_stylesheet_directory_uri() . '/assets/css/single-photo.css', array(), null );
     
     // Charger les scripts du thème enfant
-    wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array(), '1.0', true);
+    wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
 }
 add_action( 'wp_enqueue_scripts', 'nathalie_mota_enqueue_styles_scripts' );
 
