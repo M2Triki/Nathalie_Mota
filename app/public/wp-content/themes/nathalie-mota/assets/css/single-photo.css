@@ -37,7 +37,6 @@
 }
 
 .photo-interaction-bar {
-  background-color: #f8f8f8;
   padding: 30px 50px;
   display: flex;
   justify-content: space-between;
@@ -59,12 +58,12 @@
 
 .contact-modal-trigger {
   padding: 10px 100px;
-  background-color: #d8d8d8;
-  color: #000;
+  background-color: var(--ast-global-color-1);
+  color: #fff;
 }
 
 .contact-modal-trigger:hover {
-  background-color: #000;
+  background-color: var(--ast-global-color-0);
   color: #fff;
 }
 
