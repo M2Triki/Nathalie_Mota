@@ -6,6 +6,7 @@
             <p><strong>Référence :</strong> <?php echo get_post_meta(get_the_ID(), 'reference', true); ?></p>
             <p><strong>Catégorie :</strong> <?php the_terms(get_the_ID(), 'categorie'); ?></p>
             <p><strong>Format :</strong> <?php the_terms(get_the_ID(), 'format'); ?></p>
+            <p><strong>Type :</strong> <?php echo get_post_meta(get_the_ID(), 'type', true); ?></p>
             <p><strong>Année :</strong> <?php echo get_post_meta(get_the_ID(), 'annee', true); ?></p>
         </div>
 
@@ -27,11 +28,15 @@
             $next_post = get_next_post();
 
             if ($prev_post) :
-                echo '<a href="' . get_permalink($prev_post->ID) . '" class="photo-nav-link prev-link">Précédent</a>';
+                echo '<a href="' . get_permalink($prev_post->ID) . '" class="photo-nav-link prev-link">';
+                echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/precedent.png" alt="Précedent" class="nav-arrow">';
+                echo '</a>';
             endif;
 
             if ($next_post) :
-                echo '<a href="' . get_permalink($next_post->ID) . '" class="photo-nav-link next-link">Suivant</a>';
+                echo '<a href="' . get_permalink($next_post->ID) . '" class="photo-nav-link next-link">';
+                echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/suivant.png" alt="Suivant" class="nav-arrow">';
+                echo '</a>';
             endif;
             ?>
         </div>

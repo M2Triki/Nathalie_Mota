@@ -10,6 +10,13 @@
   gap: 40px;
 }
 
+.photo-interaction-bar {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
 /*** Section GAUCHE ***/
 .photo-info-left {
   width: 50%;
@@ -36,12 +43,14 @@
   object-fit: contain;
 }
 
-.photo-interaction-bar {
-  padding: 30px 50px;
+/* Flèches */
+.photo-navigation {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
+  gap: 20px;
+}
+
+.photo-nav-link:hover .nav-arrow {
+  transform: scale(1.1);
 }
 
 /*** Contact ***/
