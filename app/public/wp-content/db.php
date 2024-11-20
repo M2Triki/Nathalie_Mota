@@ -1,0 +1,1 @@
+/Users/apollotriki/Local Sites/nathalie-mota/app/public/wp-content/plugins/query-monitor/wp-content/db.php
