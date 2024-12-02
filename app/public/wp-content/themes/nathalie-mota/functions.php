@@ -9,41 +9,25 @@
  */
 
 /**
- * Define Constants
- */
-define( 'CHILD_THEME_NATHALIE_MOTA_VERSION', '1.0.0' );
-
-/**
  * Enqueue styles and scripts
  */
 function nathalie_mota_enqueue_styles_scripts() {
-    // Charger le style du thème parent (Astra)
-    wp_enqueue_style( 'astra-theme-css', get_template_directory_uri() . '/style.css' );
-    
-    // Charger le style du thème enfant
-    wp_enqueue_style( 'nathalie-mota-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_NATHALIE_MOTA_VERSION, 'all' );
+    // Charger le style principal du thème
+    wp_enqueue_style( 'nathalie-mota-theme-css', get_template_directory_uri() . '/style.css', array(), '1.0.0', 'all' );
     
     // Charger les polices locales (fonts.css)
-    wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
+    wp_enqueue_style( 'nathalie-mota-fonts-css', get_template_directory_uri() . '/assets/css/fonts.css', array(), null );
 
     // Charger le CSS pour le modal de Contact
-    wp_enqueue_style( 'nathalie-mota-contact-css', get_stylesheet_directory_uri() . '/assets/css/contact.css', array(), null );
+    wp_enqueue_style( 'nathalie-mota-contact-css', get_template_directory_uri() . '/assets/css/contact.css', array(), null );
 
     // Charger le CSS pour le template single photo
-    wp_enqueue_style( 'nathalie-mota-single-photo-css', get_stylesheet_directory_uri() . '/assets/css/single-photo.css', array(), null );
+    wp_enqueue_style( 'nathalie-mota-single-photo-css', get_template_directory_uri() . '/assets/css/single-photo.css', array(), null );
     
-    // Charger les scripts du thème enfant
-    wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
+    // Charger les scripts du thème
+    wp_enqueue_script('nathalie-mota-script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.0', true);
 }
 add_action( 'wp_enqueue_scripts', 'nathalie_mota_enqueue_styles_scripts' );
-
-/**
- * Deregister Google Fonts from Astra
- */
-function nathalie_mota_dequeue_google_fonts() {
-    wp_dequeue_style( 'astra-google-fonts' );
-}
-add_action( 'wp_enqueue_scripts', 'nathalie_mota_dequeue_google_fonts', 20 );
 
 /**
  * Register Menus
@@ -69,8 +53,7 @@ function nathalie_mota_add_contact_menu_item($items, $args) {
 }
 add_filter('wp_nav_menu_items', 'nathalie_mota_add_contact_menu_item', 10, 2);
 
-
-// Fonction pour afficher les filtres dans la page d'accueil.
+/* Fonction pour afficher les filtres dans la page d'accueil */
 function afficher_filtres_photos() {
     ob_start();
     get_template_part('template-parts/filtres');
@@ -78,3 +61,10 @@ function afficher_filtres_photos() {
 }
 add_shortcode('filtres_photos', 'afficher_filtres_photos');
 
+/* Mode Maintenance (désactivé) */
+// function maintenance_mode() {
+//     if ( !current_user_can( 'administrator' ) ) {
+//         wp_die('Maintenance.');
+//     }
+// }
+// add_action('get_header', 'maintenance_mode');

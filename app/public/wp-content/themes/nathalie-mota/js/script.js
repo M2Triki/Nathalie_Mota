@@ -1,4 +1,4 @@
-console.log("ScriptJS functionne");
+console.log("ScriptJS ok");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Récupérer les éléments du modal de contact global
