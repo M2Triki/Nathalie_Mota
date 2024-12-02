@@ -1,140 +1,18 @@
-/**
+/*
 Theme Name: Nathalie Mota
+Theme URI: https://example.com
 Author: Matheo TRIKI
-Author URI: https://github.com/M2Triki
-Description: Website made by Matheo TRIKI
-Version: 1.0.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Thème personnalisé pour Nathalie Mota
+Version: 1.0
 Text Domain: nathalie-mota
 */
 
 /***** REGLAGES GENERAUX *****/
 body {
-  font-family: "Space Mono", sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Space Mono", sans-serif;
-}
-
-h1,
-h2 {
-  font-style: italic;
-}
-
-/***** HEADER *****/
-.entry-header.ast-no-thumbnail.ast-no-title.ast-header-without-markup {
-  display: none; /* Cache complètement le header vide */
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background-color: white;
-}
-
-header .logo img {
-  max-width: 216px;
-  height: auto;
-}
-
-header nav {
-  display: flex;
-}
-
-.menu-principal {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.menu-principal li {
-  margin-left: 20px;
-}
-
-.menu-principal a {
-  text-decoration: none;
-  color: #333;
-  padding: 10px 15px;
-  transition: color 0.3s ease;
-}
-
-.menu-principal a:hover {
-  font-weight: 800;
-}
-
-/***** FOOTER *****/
-.footer-nav {
-  display: flex;
-  height: 60px;
-  align-items: center;
-  justify-content: center;
-  border-top: solid 1px black;
-}
-
-.footer-menu {
-  list-style: none;
-  margin: 0;
-  display: inline-flex;
-  gap: 30px;
-}
-
-.footer-menu li {
   margin: 0;
 }
 
-.footer-menu a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.footer-menu a:hover {
-  color: #0073e6;
-}
-
-/***** ACCUEIL *****/
-.h1-accueil {
-  color: transparent;
-  -webkit-text-stroke: 2px white; /* Bords du texte en blanc */
-}
-
-/*** Filtres ***/
-.photo-filters {
-  padding: 50px 0 10px 0; /* Padding pour bas et haut */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.filters-left,
-.filters-right {
-  display: flex;
-  gap: 15px;
-}
-
-.filters-left select,
-.filters-right select {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.photo-filters select {
-  padding: 0 100px 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  text-transform: uppercase;
+.container {
+  width: 1148px;
+  margin: auto;
 }

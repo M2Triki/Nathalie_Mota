@@ -1,37 +1,39 @@
 <div class="photo-filters">
-    <div class="filters-left">
-        <select id="filter-category">
-            <option value="">Catégories</option>
+    <div class="filter-dropdown">
+        <button class="filter-button">Catégories</button>
+        <ul class="dropdown-options" id="categories-filter">
             <?php
             $categories = get_terms(array(
                 'taxonomy' => 'categorie',
                 'hide_empty' => false,
             ));
             foreach ($categories as $category) {
-                echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
+                echo '<li data-category="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</li>';
             }
             ?>
-        </select>
+        </ul>
+    </div>
 
-        <select id="filter-format">
-            <option value="">Formats</option>
+    <div class="filter-dropdown">
+        <button class="filter-button">Formats</button>
+        <ul class="dropdown-options" id="formats-filter">
             <?php
             $formats = get_terms(array(
                 'taxonomy' => 'format',
                 'hide_empty' => false,
             ));
             foreach ($formats as $format) {
-                echo '<option value="' . esc_attr($format->slug) . '">' . esc_html($format->name) . '</option>';
+                echo '<li data-format="' . esc_attr($format->slug) . '">' . esc_html($format->name) . '</li>';
             }
             ?>
-        </select>
+        </ul>
     </div>
 
-    <div class="filters-right">
-        <select id="filter-date">
-            <option value="">Trier par</option>
-            <option value="desc">Les plus récentes</option>
-            <option value="asc">Les plus anciennes</option>
-        </select>
+    <div class="filter-dropdown">
+        <button class="filter-button">Trier par</button>
+        <ul class="dropdown-options" id="sort-filter">
+            <li data-sort="desc">Les plus récentes</li>
+            <li data-sort="asc">Les plus anciennes</li>
+        </ul>
     </div>
 </div>

@@ -57,3 +57,39 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
+// Recharger automatiquement la front page quand les filtres sont selectionées
+function loadPhotos() {
+  const category = document.getElementById("categorie").value;
+  const format = document.getElementById("format").value;
+  const order = document.getElementById("order").value;
+
+  const params = new URLSearchParams({
+    categorie: category,
+    format: format,
+    order: order,
+  });
+
+  // Modifier l'URL pour correspondre au nom de votre CPT
+  fetch(`/wp-json/wp/v2/photo_custom_endpoint?${params.toString()}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // Réinitialiser la galerie
+      photoGrid.innerHTML = "";
+
+      // Ajouter les photos retournées par la requête
+      data.forEach((photo) => {
+        const photoItem = document.createElement("div");
+        photoItem.classList.add("photo-item");
+        photoItem.innerHTML = `
+                  <a href="${photo.link}">
+                      <img src="${photo.featured_media_src_url}" alt="${photo.title.rendered}">
+                  </a>
+              `;
+        photoGrid.appendChild(photoItem);
+      });
+    })
+    .catch((error) =>
+      console.error("Erreur lors du chargement des photos :", error)
+    );
+}
