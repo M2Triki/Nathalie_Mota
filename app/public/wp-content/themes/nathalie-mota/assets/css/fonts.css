@@ -1,3 +1,8 @@
+:root {
+  --font-heading: "Space Mono", monospace;
+  --font-body: "Poppins", sans-serif;
+}
+
 /***** Space Mono *****/
 /* Regular */
 @font-face {

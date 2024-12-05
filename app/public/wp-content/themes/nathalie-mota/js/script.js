@@ -140,12 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/* Charger photos quand les filtres sont selectionnées */
 document.addEventListener("DOMContentLoaded", function () {
   const filters = document.querySelectorAll(".filter-options li");
   const photoGrid = document.getElementById("photo-grid");
 
-  // Fonction pour charger les photos
   function loadPhotos() {
     const category =
       document.querySelector("[data-category].selected")?.dataset.category ||
@@ -153,58 +151,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const format =
       document.querySelector("[data-format].selected")?.dataset.format || "";
     const order =
-      document.querySelector("[data-sort].selected")?.dataset.sort || "desc";
+      document.querySelector("[data-sort].selected")?.dataset.sort || "DESC";
 
-    const params = new URLSearchParams({
-      categorie: category,
-      format: format,
-      order: order,
-    });
+    const data = new FormData();
+    data.append("action", "load_photos");
+    data.append("nonce", nathalieMota.nonce); // Utilisation du nonce
+    data.append("category", category);
+    data.append("format", format);
+    data.append("order", order);
 
-    fetch(`/wp-json/wp/v2/filtered-photos?${params.toString()}`)
+    fetch(nathalieMota.ajax_url, {
+      // Utilisation de l'URL AJAX
+      method: "POST",
+      body: data,
+    })
       .then((response) => response.json())
-      .then((data) => {
-        photoGrid.innerHTML = ""; // Réinitialiser la galerie
-
-        // Ajouter les nouvelles photos
-        if (data.length > 0) {
-          data.forEach((photo) => {
-            const photoItem = document.createElement("div");
-            photoItem.classList.add("photo-item");
-            photoItem.innerHTML = `
-                          <a href="${photo.link}">
-                              <img src="${photo.thumbnail}" alt="${photo.title}">
-                          </a>
-                      `;
-            photoGrid.appendChild(photoItem);
-          });
+      .then((result) => {
+        if (result.success) {
+          photoGrid.innerHTML = result.data.html;
         } else {
-          photoGrid.innerHTML = "<p>Aucune photo trouvée.</p>";
+          console.error("Erreur lors du chargement des photos.");
         }
       })
-      .catch((error) =>
-        console.error("Erreur lors du chargement des photos :", error)
-      );
+      .catch((error) => console.error("Erreur AJAX :", error));
   }
 
-  // Ajouter des événements de clic pour les filtres
+  // Ajout des événements de clic pour les filtres
   filters.forEach((filter) => {
     filter.addEventListener("click", function () {
-      // Ajouter la classe "selected" au filtre sélectionné
-      const filterType = this.dataset.category
-        ? "data-category"
-        : this.dataset.format
-        ? "data-format"
-        : "data-sort";
+      const type = this.dataset.category ? "data-category" : "data-format";
 
-      // Supprimer les "selected" des filtres du même type
       document
-        .querySelectorAll(`[${filterType}]`)
+        .querySelectorAll(`[${type}]`)
         .forEach((f) => f.classList.remove("selected"));
+      this.classList.add("selected");
 
-      this.classList.add("selected"); // Ajouter "selected" au filtre cliqué
-
-      loadPhotos(); // Recharger les photos
+      loadPhotos(); // Recharge les photos
     });
   });
 });

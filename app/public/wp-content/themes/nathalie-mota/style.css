@@ -10,6 +10,42 @@ Text Domain: nathalie-mota
 /***** REGLAGES GENERAUX *****/
 body {
   margin: 0;
+  font-family: var(--font-body);
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: #000; /* Couleur par défaut des titres */
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 96px;
+  font-style: italic;
+}
+
+h2 {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 66px;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+p,
+button {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: black;
 }
 
 .container {

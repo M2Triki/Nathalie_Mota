@@ -9,7 +9,6 @@
 
     <?php get_template_part('template-parts/filtres'); ?>
 
-    <!-- Grille de photos -->
     <div class="photo-gallery">
         <div class="photo-grid" id="photo-grid">
             <?php
@@ -34,7 +33,7 @@
             <?php endif; ?>
         </div>
     </div>
-    
+
 </div>
 
 <?php get_footer(); ?>
