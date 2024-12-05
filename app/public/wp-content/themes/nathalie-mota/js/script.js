@@ -1,5 +1,6 @@
 console.log("ScriptJS ok");
 
+/* Modal de CONTACT */
 document.addEventListener("DOMContentLoaded", function () {
   // Récupérer les éléments du modal de contact global
   var modal = document.getElementById("modal-contact");
@@ -93,3 +94,108 @@ function loadPhotos() {
       console.error("Erreur lors du chargement des photos :", error)
     );
 }
+
+/* Filtres front page */
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdowns = document.querySelectorAll(".filter-dropdown");
+
+  // Gérer les dropdowns
+  dropdowns.forEach((dropdown) => {
+    const button = dropdown.querySelector(".filter-button");
+    const options = dropdown.querySelector(".filter-options");
+
+    // Ouvrir/fermer le dropdown au clic sur le bouton
+    button.addEventListener("click", function (e) {
+      e.stopPropagation(); // Empêcher la propagation
+      dropdown.classList.toggle("active");
+
+      // Fermer les autres dropdowns
+      dropdowns.forEach((d) => {
+        if (d !== dropdown) {
+          d.classList.remove("active");
+        }
+      });
+    });
+
+    // Gérer la sélection dans les options
+    options.addEventListener("click", function (e) {
+      if (e.target.tagName === "LI") {
+        const selectedValue = e.target.textContent;
+
+        // Remplacer le texte du bouton par la valeur sélectionnée
+        button.textContent = selectedValue;
+
+        // Fermer le dropdown
+        dropdown.classList.remove("active");
+
+        // Charger dynamiquement les photos (si nécessaire)
+        console.log("Option sélectionnée :", selectedValue);
+      }
+    });
+  });
+
+  // Fermer les dropdowns si clic en dehors
+  document.addEventListener("click", function () {
+    dropdowns.forEach((dropdown) => dropdown.classList.remove("active"));
+  });
+});
+
+/* Effectuer rêquete Ajax quand un filtre est selectionnée */
+document.addEventListener("DOMContentLoaded", function () {
+  const filters = document.querySelectorAll(".filter-options li");
+  const photoGrid = document.getElementById("photo-grid");
+
+  // Fonction pour charger les photos
+  function loadPhotos(category = "", format = "", order = "desc") {
+    const params = new URLSearchParams({
+      categorie: category,
+      format: format,
+      order: order,
+    });
+
+    fetch(`/wp-json/wp/v2/filtered-photos?${params.toString()}`)
+      .then((response) => response.json())
+      .then((data) => {
+        photoGrid.innerHTML = ""; // Réinitialiser la galerie
+
+        // Ajouter les nouvelles photos
+        if (data.length > 0) {
+          data.forEach((photo) => {
+            const photoItem = document.createElement("div");
+            photoItem.classList.add("photo-item");
+            photoItem.innerHTML = `
+                          <a href="${photo.link}">
+                              <img src="${photo.thumbnail}" alt="${photo.title}">
+                          </a>
+                      `;
+            photoGrid.appendChild(photoItem);
+          });
+        } else {
+          photoGrid.innerHTML = "<p>Aucune photo trouvée.</p>";
+        }
+      })
+      .catch((error) =>
+        console.error("Erreur lors du chargement des photos :", error)
+      );
+  }
+
+  // Ajouter des événements de clic pour les filtres
+  filters.forEach((filter) => {
+    filter.addEventListener("click", function () {
+      const category =
+        document.querySelector("[data-category].selected")?.dataset.category ||
+        "";
+      const format =
+        document.querySelector("[data-format].selected")?.dataset.format || "";
+      const order =
+        document.querySelector("[data-sort].selected")?.dataset.sort || "desc";
+
+      // Mettre à jour l'état des boutons sélectionnés
+      filters.forEach((f) => f.classList.remove("selected"));
+      this.classList.add("selected");
+
+      // Charger les photos
+      loadPhotos(category, format, order);
+    });
+  });
+});

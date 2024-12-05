@@ -73,7 +73,7 @@
 
 /* Button Envoyer */
 .wpcf7-form input[type="submit"] {
-  background-color: var(--ast-global-color-1);
+  background-color: #d8d8d8;
   color: #fff;
   transition: background-color 0.3s ease;
   border: none;
@@ -84,7 +84,7 @@
 }
 
 .wpcf7-form input[type="submit"]:hover {
-  background-color: var(--ast-global-color-0);
+  background-color: #e00000;
 }
 
 .wpcf7 input.wpcf7-form-control:not([type="submit"]) {

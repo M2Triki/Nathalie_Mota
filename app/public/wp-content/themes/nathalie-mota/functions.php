@@ -64,16 +64,17 @@ function afficher_filtres_photos() {
 }
 add_shortcode('filtres_photos', 'afficher_filtres_photos');
 
-/* Pour que les filtres functionnent avec AJAX */
+
+/* Filtres */
 function fetch_filtered_photos() {
     $args = array(
-        'post_type' => 'photo', // Assurez-vous que le CPT est bien nommé "photo"
+        'post_type' => 'photo',
         'posts_per_page' => 8,
         'orderby' => 'date',
         'order' => isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'desc',
     );
 
-    // Ajouter un filtre pour les catégories
+    // Ajout du filtre par catégorie
     if (!empty($_GET['categorie'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'categorie',
@@ -82,7 +83,7 @@ function fetch_filtered_photos() {
         );
     }
 
-    // Ajouter un filtre pour les formats
+    // Ajout du filtre par format
     if (!empty($_GET['format'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'format',
@@ -100,18 +101,17 @@ function fetch_filtered_photos() {
                 'id' => get_the_ID(),
                 'title' => get_the_title(),
                 'link' => get_permalink(),
-                'featured_media_src_url' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
+                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
             );
         endwhile;
     endif;
 
-    wp_reset_postdata();
     wp_send_json($photos);
 }
 
-// Ajouter le endpoint REST API
+// Enregistrer l'endpoint REST API
 add_action('rest_api_init', function () {
-    register_rest_route('wp/v2', '/photo_custom_endpoint', array(
+    register_rest_route('wp/v2', '/filtered-photos', array(
         'methods' => 'GET',
         'callback' => 'fetch_filtered_photos',
     ));

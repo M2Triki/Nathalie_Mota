@@ -6,43 +6,8 @@
 
 
 <div class="container">
-    <!-- Filtres -->
-    <!-- Filtres -->
-<div class="photo-filters">
-    <!-- Dropdown pour Catégories -->
-    <select id="categorie" name="categorie">
-        <option value="">Toutes les catégories</option>
-        <?php
-        $categories = get_terms(array(
-            'taxonomy' => 'categorie',
-            'hide_empty' => false,
-        ));
-        foreach ($categories as $category) {
-            echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
-        }
-        ?>
-    </select>
 
-    <!-- Dropdown pour Formats -->
-    <select id="format" name="format">
-        <option value="">Tous les formats</option>
-        <?php
-        $formats = get_terms(array(
-            'taxonomy' => 'format',
-            'hide_empty' => false,
-        ));
-        foreach ($formats as $format) {
-            echo '<option value="' . esc_attr($format->slug) . '">' . esc_html($format->name) . '</option>';
-        }
-        ?>
-    </select>
-
-    <!-- Dropdown pour Trier par -->
-    <select id="order" name="order">
-        <option value="desc">Les plus récentes</option>
-        <option value="asc">Les plus anciennes</option>
-    </select>
-</div>
+<?php get_template_part('template-parts/filtres'); ?>
 
 <!-- Grille de photos -->
 <div class="photo-gallery">
@@ -68,7 +33,6 @@
             <p>Aucune photo trouvée.</p>
         <?php endif; ?>
     </div>
-</div>
 </div>
 
 <?php get_footer(); ?>

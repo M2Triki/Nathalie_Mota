@@ -8,8 +8,9 @@ header {
 
 nav ul {
   display: flex;
+  justify-content: center;
   list-style: none;
-  gap: 20px;
+  gap: 70px;
 }
 
 nav ul li a {
@@ -36,54 +37,83 @@ nav ul li a {
 /* Filtres */
 .photo-filters {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
-  padding: 20px 0;
+  margin: 20px 0;
 }
 
-.photo-filters form {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.photo-filters select {
-  padding: 5px 10px;
-  font-size: 16px;
+/* Boutons des filtres */
+.filter-button {
+  background-color: #f8f8f8;
   border: 1px solid #ccc;
+  padding: 10px 15px;
+  font-size: 16px;
   border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
 }
 
-.photo-filters button {
-  padding: 8px 15px;
-  font-size: 16px;
-  border: none;
+.filter-button:hover {
+  background-color: #ddd;
+}
+
+/* Liste déroulante cachée par défaut */
+.filter-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  background-color: white;
+  position: absolute;
+  width: 150px;
+  display: none;
+  z-index: 1000;
   border-radius: 5px;
-  background-color: #888;
-  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Options individuelles */
+.filter-options li {
+  padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.photo-filters button:hover {
-  background-color: #555;
+.filter-options li:hover {
+  background-color: #ddd;
 }
 
-/* Grille de photos */
+/* Affichage actif du dropdown */
+.filter-dropdown.active .filter-options {
+  display: block;
+}
+
+/***** Galerie PHOTOS *****/
+/* Conteneur principal de la galerie */
+.photo-gallery {
+  width: 1148px; /* Largeur fixe */
+  margin: 0 auto; /* Centrer la galerie */
+  padding: 20px 0;
+}
+
+/* Grille pour les photos */
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 564px); /* Deux colonnes de 564px */
+  grid-auto-rows: 495px; /* Hauteur fixe de chaque rangée */
+  gap: 20px; /* Espacement de 20px entre les colonnes et les lignes */
 }
 
+/* Images des items de la galerie */
 .photo-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
+  width: 100%; /* Adapter la largeur de l'image à son conteneur */
+  height: 100%; /* Adapter la hauteur de l'image à son conteneur */
+  object-fit: cover; /* Redimensionner l'image tout en gardant ses proportions */
+  border-radius: 5px; /* Coins légèrement arrondis */
+  transition: transform 0.3s ease; /* Animation au survol */
 }
 
+/* Animation au survol */
 .photo-item img:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Zoomer légèrement au survol */
 }

@@ -1,7 +1,8 @@
 <div class="photo-filters">
+    <!-- Catégories -->
     <div class="filter-dropdown">
         <button class="filter-button">Catégories</button>
-        <ul class="dropdown-options" id="categories-filter">
+        <ul class="filter-options">
             <?php
             $categories = get_terms(array(
                 'taxonomy' => 'categorie',
@@ -14,9 +15,10 @@
         </ul>
     </div>
 
+    <!-- Formats -->
     <div class="filter-dropdown">
         <button class="filter-button">Formats</button>
-        <ul class="dropdown-options" id="formats-filter">
+        <ul class="filter-options">
             <?php
             $formats = get_terms(array(
                 'taxonomy' => 'format',
@@ -29,9 +31,10 @@
         </ul>
     </div>
 
+    <!-- Trier par -->
     <div class="filter-dropdown">
         <button class="filter-button">Trier par</button>
-        <ul class="dropdown-options" id="sort-filter">
+        <ul class="filter-options">
             <li data-sort="desc">Les plus récentes</li>
             <li data-sort="asc">Les plus anciennes</li>
         </ul>
