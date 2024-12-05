@@ -140,13 +140,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/* Effectuer rêquete Ajax quand un filtre est selectionnée */
+/* Charger photos quand les filtres sont selectionnées */
 document.addEventListener("DOMContentLoaded", function () {
   const filters = document.querySelectorAll(".filter-options li");
   const photoGrid = document.getElementById("photo-grid");
 
   // Fonction pour charger les photos
-  function loadPhotos(category = "", format = "", order = "desc") {
+  function loadPhotos() {
+    const category =
+      document.querySelector("[data-category].selected")?.dataset.category ||
+      "";
+    const format =
+      document.querySelector("[data-format].selected")?.dataset.format || "";
+    const order =
+      document.querySelector("[data-sort].selected")?.dataset.sort || "desc";
+
     const params = new URLSearchParams({
       categorie: category,
       format: format,
@@ -182,20 +190,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Ajouter des événements de clic pour les filtres
   filters.forEach((filter) => {
     filter.addEventListener("click", function () {
-      const category =
-        document.querySelector("[data-category].selected")?.dataset.category ||
-        "";
-      const format =
-        document.querySelector("[data-format].selected")?.dataset.format || "";
-      const order =
-        document.querySelector("[data-sort].selected")?.dataset.sort || "desc";
+      // Ajouter la classe "selected" au filtre sélectionné
+      const filterType = this.dataset.category
+        ? "data-category"
+        : this.dataset.format
+        ? "data-format"
+        : "data-sort";
 
-      // Mettre à jour l'état des boutons sélectionnés
-      filters.forEach((f) => f.classList.remove("selected"));
-      this.classList.add("selected");
+      // Supprimer les "selected" des filtres du même type
+      document
+        .querySelectorAll(`[${filterType}]`)
+        .forEach((f) => f.classList.remove("selected"));
 
-      // Charger les photos
-      loadPhotos(category, format, order);
+      this.classList.add("selected"); // Ajouter "selected" au filtre cliqué
+
+      loadPhotos(); // Recharger les photos
     });
   });
 });

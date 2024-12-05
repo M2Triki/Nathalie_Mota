@@ -72,9 +72,12 @@ function fetch_filtered_photos() {
         'posts_per_page' => 8,
         'orderby' => 'date',
         'order' => isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'desc',
+        'tax_query' => array(
+            'relation' => 'AND', // Combine les conditions
+        ),
     );
 
-    // Ajout du filtre par catégorie
+    // Ajouter le filtre par catégorie si présent
     if (!empty($_GET['categorie'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'categorie',
@@ -83,7 +86,7 @@ function fetch_filtered_photos() {
         );
     }
 
-    // Ajout du filtre par format
+    // Ajouter le filtre par format si présent
     if (!empty($_GET['format'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'format',
@@ -101,7 +104,7 @@ function fetch_filtered_photos() {
                 'id' => get_the_ID(),
                 'title' => get_the_title(),
                 'link' => get_permalink(),
-                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
+                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
             );
         endwhile;
     endif;
