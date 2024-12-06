@@ -1,9 +1,8 @@
 /***** CONTACT MODAL *****/
-/* Masquer le modal par défaut */
 .modal {
-  display: none; /* Caché par défaut */
+  display: none;
   position: fixed;
-  z-index: 1000; /* Toujours au-dessus des autres éléments */
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -11,18 +10,21 @@
   background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
 }
 
-/* Contenu de la modale */
 .modal-content {
   background-color: white;
   position: relative;
   margin: 3% auto;
   top: 0;
-  padding: 20px 0;
+  padding: 20px;
   border: 1px solid #888;
   width: 80%;
   max-width: 600px;
   text-align: center;
+
+  max-height: 80vh;
+  overflow-y: auto;
 }
+
 .modal-title {
   background-image: url("../img/contact.png");
   background-size: cover;
@@ -31,7 +33,6 @@
   height: 110px;
 }
 
-/* Bouton de fermeture */
 .close {
   color: #aaa;
   position: absolute;

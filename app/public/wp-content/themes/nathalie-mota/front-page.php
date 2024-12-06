@@ -34,6 +34,20 @@
         </div>
     </div>
 
+    <div class="lightbox hidden" id="lightbox">
+    <button class="lightbox__close" aria-label="Fermer" title="Fermer">×</button>
+    <div class="lightbox__container">
+        <div class="lightbox__loader hidden"></div>
+        <div class="lightbox__container_content" id="lightbox__container_content">
+            <!-- L'image ou le contenu de la lightbox sera injecté ici -->
+        </div>
+        <div class="lightbox__navigation">
+            <button class="lightbox__prev" aria-label="Voir la photo précédente" title="Photo précédente">←</button>
+            <button class="lightbox__next" aria-label="Voir la photo suivante" title="Photo suivante">→</button>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <?php get_footer(); ?>

@@ -18,6 +18,9 @@ function nathalie_mota_enqueue_styles_scripts() {
     // Front Page CSS
     wp_enqueue_style( 'nathalie-mota-front-page-css', get_stylesheet_directory_uri() . '/assets/css/front-page.css', array(), null );
 
+    // Lightbox CSS
+    wp_enqueue_style( 'nathalie-mota-lightbox-css', get_stylesheet_directory_uri() . '/assets/css/lightbox.css', array(), null );
+
     // Charger les polices locales
     wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
 
