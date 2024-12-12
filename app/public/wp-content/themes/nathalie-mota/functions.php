@@ -33,6 +33,9 @@ function nathalie_mota_enqueue_styles_scripts() {
     // Charger les scripts JS
     wp_enqueue_script('nathalie-mota-script', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0.0', true);
 
+    // Charger lightbox JS
+    wp_enqueue_script('nathalie-mota-lightbox-script', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), null, true);
+
     // Ajouter les données AJAX (localize script)
     wp_localize_script('nathalie-mota-script', 'nathalieMota', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -54,9 +57,7 @@ add_action('after_setup_theme', 'nathalie_mota_register_menus');
 
 /***** Hook Contact *****/
 function nathalie_mota_add_contact_menu_item($items, $args) {
-    // Vérifie que nous ajoutons l'élément uniquement au menu principal
     if ($args->theme_location == 'menu-principal') {
-        // Ajoute l'élément "Contact" avec une classe personnalisée
         $items .= '<li class="menu-item menu-item-contact"><a href="#" class="open-modal-contact">CONTACT</a></li>';
     }
     return $items;
