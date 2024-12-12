@@ -48,7 +48,7 @@
             <?php
             $related_photos = new WP_Query(array(
                 'post_type' => 'photo',
-                'posts_per_page' => 4,
+                'posts_per_page' => 2,
                 'post__not_in' => array(get_the_ID()),
                 'tax_query' => array(
                     array(

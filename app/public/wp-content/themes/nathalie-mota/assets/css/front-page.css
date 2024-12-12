@@ -10,12 +10,16 @@ nav ul {
   display: flex;
   justify-content: center;
   list-style: none;
-  gap: 70px;
+  gap: 30px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: black;
+}
+
+nav ul li a:hover {
+  font-weight: 700;
 }
 
 /*** Hero Banner ***/
@@ -40,7 +44,6 @@ nav ul li a {
 }
 
 /*** FILTRES ***/
-/* Conteneur principal des filtres */
 .photo-filters {
   display: flex;
   justify-content: space-between; /* Espace entre les deux groupes de filtres */
@@ -48,19 +51,17 @@ nav ul li a {
   padding: 40px 0px 0 0;
 }
 
-/* Filtres à gauche */
 .filters-left {
   display: flex;
-  gap: 15px; /* Espacement entre les boutons */
+  gap: 15px;
 }
 
-/* Filtre à droite */
 .filters-right {
   display: flex;
 }
 
 .filter-button {
-  background-color: #f8f8f8;
+  background-color: white;
   border: 1px solid #ccc;
   padding: 10px 15px;
   font-size: 16px;
@@ -74,7 +75,6 @@ nav ul li a {
   background-color: #ddd;
 }
 
-/* Liste déroulante cachée par défaut */
 .filter-options {
   list-style: none;
   margin: 0;
@@ -95,14 +95,15 @@ nav ul li a {
   transition: background-color 0.3s ease;
 }
 
-.filter-options li.selected {
-  background-color: #ddd;
-  font-weight: bold;
-  color: #000;
+.filter-options li:hover {
+  background-color: #e00000;
+  color: white;
 }
 
-.filter-options li:hover {
-  background-color: #ddd;
+.filter-options li.selected {
+  background-color: #e00000;
+  font-weight: bold;
+  color: white;
 }
 
 .filter-dropdown.active .filter-options {
@@ -110,7 +111,6 @@ nav ul li a {
 }
 
 /***** Galerie PHOTOS *****/
-/* Galerie */
 .photo-gallery {
   width: 1148px;
   margin: 0 auto;
@@ -163,7 +163,7 @@ nav ul li a {
 
 .photo-eye {
   font-size: 36px;
-  margin-top: auto;
+  margin: auto;
 }
 
 .photo-info {

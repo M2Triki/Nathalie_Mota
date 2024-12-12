@@ -18,9 +18,6 @@ function nathalie_mota_enqueue_styles_scripts() {
     // Front Page CSS
     wp_enqueue_style( 'nathalie-mota-front-page-css', get_stylesheet_directory_uri() . '/assets/css/front-page.css', array(), null );
 
-    // Lightbox CSS
-    wp_enqueue_style( 'nathalie-mota-lightbox-css', get_stylesheet_directory_uri() . '/assets/css/lightbox.css', array(), null );
-
     // Charger les polices locales
     wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
 
@@ -121,11 +118,9 @@ function nathalie_mota_ajax_load_photos() {
             $query->the_post();
             ob_start();
             ?>
-            <div class="photo-item">
-                <a href="<?php the_permalink(); ?>">
-                    <img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>">
-                </a>
-            </div>
+            
+            <?php get_template_part('template-parts/photo_block'); ?>
+
             <?php
             $photos_html .= ob_get_clean();
         }
