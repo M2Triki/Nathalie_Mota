@@ -1,0 +1,81 @@
+/***** LIGHTBOX *****/
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox__image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.lightbox__info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #fff;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.lightbox__prev,
+.lightbox__next {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.lightbox__prev:hover,
+.lightbox__next:hover {
+  background: #ccc;
+}

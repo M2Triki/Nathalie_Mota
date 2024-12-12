@@ -21,6 +21,9 @@ function nathalie_mota_enqueue_styles_scripts() {
     // Charger les polices locales
     wp_enqueue_style( 'nathalie-mota-fonts-css', get_stylesheet_directory_uri() . '/assets/css/fonts.css', array(), null );
 
+    // Charger Lightbox CSS
+    wp_enqueue_style('lightbox-css', get_stylesheet_directory_uri() . '/assets/css/lightbox.css', array(), null );
+
     // Charger le CSS pour le modal de Contact
     wp_enqueue_style( 'nathalie-mota-contact-css', get_stylesheet_directory_uri() . '/assets/css/contact.css', array(), null );
 
@@ -73,7 +76,6 @@ function afficher_filtres_photos() {
 
 add_shortcode('filtres_photos', 'afficher_filtres_photos');
 function nathalie_mota_ajax_load_photos() {
-    // Vérification de sécurité
     check_ajax_referer('nathalie_mota_nonce', 'nonce');
 
     // Récupération et nettoyage des données des filtres
@@ -108,10 +110,8 @@ function nathalie_mota_ajax_load_photos() {
         );
     }
 
-    // Exécution de la requête WP_Query
     $query = new WP_Query($args);
 
-    // Construction du HTML pour chaque photo
     $photos_html = '';
     if ($query->have_posts()) {
         while ($query->have_posts()) {
@@ -141,5 +141,3 @@ function nathalie_mota_ajax_load_photos() {
 // Enregistrement des hooks AJAX
 add_action('wp_ajax_load_photos', 'nathalie_mota_ajax_load_photos');
 add_action('wp_ajax_nopriv_load_photos', 'nathalie_mota_ajax_load_photos');
-
-
