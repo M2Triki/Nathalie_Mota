@@ -2,14 +2,11 @@ console.log("ScriptJS ok");
 
 /* Modal de CONTACT */
 document.addEventListener("DOMContentLoaded", function () {
-  // Récupérer les éléments du modal de contact global
   var modal = document.getElementById("modal-contact");
   var btns = document.querySelectorAll(".open-modal-contact");
   var closeBtn = document.querySelector(".close");
 
-  // Vérifie si le modal et le bouton de fermeture existent
   if (modal && closeBtn) {
-    // Ouvrir le modal quand on clique sur un élément avec la classe "open-modal-contact"
     btns.forEach(function (btn) {
       btn.onclick = function (event) {
         event.preventDefault();
@@ -17,12 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     });
 
-    // Fermer le modal quand on clique sur le bouton de fermeture
     closeBtn.onclick = function () {
       modal.style.display = "none";
     };
 
-    // Fermer le modal quand on clique en dehors du modal
     window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
@@ -37,29 +32,18 @@ jQuery(document).ready(function ($) {
     e.preventDefault();
     var photoRef = $(this).data("photo-id");
     if ($("#modal-contact").length) {
-      // Remplir le champ de la référence
       $('#modal-contact input[name="ref-photo"]').val(photoRef);
-      // Afficher le modal de contact
       $("#modal-contact").show();
     } else {
       console.error("Le modal de contact n'a pas été trouvé.");
     }
   });
 
-  // Fermer le modal au clic sur le bouton de fermeture
   $(".close").click(function () {
     $("#modal-contact").hide();
   });
-
-  // Fermer le modal quand on clique en dehors
-  $(window).click(function (event) {
-    if ($(event.target).is("#modal-contact")) {
-      $("#modal-contact").hide();
-    }
-  });
 });
 
-// Recharger automatiquement la front page quand les filtres sont selectionées
 function loadPhotos() {
   const category = document.getElementById("categorie").value;
   const format = document.getElementById("format").value;
@@ -71,14 +55,11 @@ function loadPhotos() {
     order: order,
   });
 
-  // Modifier l'URL pour correspondre au nom de votre CPT
   fetch(`/wp-json/wp/v2/photo_custom_endpoint?${params.toString()}`)
     .then((response) => response.json())
     .then((data) => {
-      // Réinitialiser la galerie
       photoGrid.innerHTML = "";
 
-      // Ajouter les photos retournées par la requête
       data.forEach((photo) => {
         const photoItem = document.createElement("div");
         photoItem.classList.add("photo-item");
@@ -99,17 +80,14 @@ function loadPhotos() {
 document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".filter-dropdown");
 
-  // Gérer les dropdowns
   dropdowns.forEach((dropdown) => {
     const button = dropdown.querySelector(".filter-button");
     const options = dropdown.querySelector(".filter-options");
 
-    // Ouvrir/fermer le dropdown au clic sur le bouton
     button.addEventListener("click", function (e) {
-      e.stopPropagation(); // Empêcher la propagation
+      e.stopPropagation();
       dropdown.classList.toggle("active");
 
-      // Fermer les autres dropdowns
       dropdowns.forEach((d) => {
         if (d !== dropdown) {
           d.classList.remove("active");
@@ -117,19 +95,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Gérer la sélection dans les options
     options.addEventListener("click", function (e) {
       if (e.target.tagName === "LI") {
         const selectedValue = e.target.textContent;
 
-        // Remplacer le texte du bouton par la valeur sélectionnée
         button.textContent = selectedValue;
 
-        // Fermer le dropdown
         dropdown.classList.remove("active");
-
-        // Charger dynamiquement les photos (si nécessaire)
-        console.log("Option sélectionnée :", selectedValue);
       }
     });
   });
@@ -155,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const data = new FormData();
     data.append("action", "load_photos");
-    data.append("nonce", nathalieMota.nonce); // Utilisation du nonce
+    data.append("nonce", nathalieMota.nonce);
     data.append("category", category);
     data.append("format", format);
     data.append("order", order);
@@ -169,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((result) => {
         if (result.success) {
           photoGrid.innerHTML = result.data.html;
+          document.dispatchEvent(new Event("galleryUpdated"));
         } else {
           console.error("Erreur lors du chargement des photos.");
         }
@@ -176,7 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((error) => console.error("Erreur AJAX :", error));
   }
 
-  // Ajout des événements de clic pour les filtres
   filters.forEach((filter) => {
     filter.addEventListener("click", function () {
       const type = this.dataset.category ? "data-category" : "data-format";
@@ -186,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .forEach((f) => f.classList.remove("selected"));
       this.classList.add("selected");
 
-      loadPhotos(); // Recharge les photos
+      loadPhotos();
     });
   });
 });

@@ -1,5 +1,3 @@
-console.log("Lightbox JS ok");
-
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = lightbox.querySelector(".lightbox__image");
@@ -10,10 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = lightbox.querySelector(".lightbox__next");
 
   let currentPhotoIndex = 0;
-  let photoItems = [];
 
-  function openLightbox(index) {
-    const item = photoItems[index];
+  function initLightboxEvents() {
+    const photoItems = document.querySelectorAll(".photo-item");
+
+    photoItems.forEach((item, index) => {
+      const fullscreenBtn = item.querySelector(".photo-fullscreen");
+      fullscreenBtn.addEventListener("click", () => {
+        currentPhotoIndex = index;
+        openLightbox(item);
+      });
+    });
+  }
+
+  function openLightbox(item) {
     const imageUrl = item.querySelector("img").getAttribute("src");
     const reference = item.querySelector(".photo-reference").textContent;
     const category = item.querySelector(".photo-category").textContent;
@@ -21,45 +29,36 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxImage.src = imageUrl;
     lightboxReference.textContent = reference;
     lightboxCategory.textContent = category;
+
     lightbox.classList.add("active");
-    currentPhotoIndex = index;
   }
 
-  function closeLightbox() {
+  closeBtn.addEventListener("click", () => {
     lightbox.classList.remove("active");
     lightboxImage.src = "";
-  }
+  });
 
   function navigateLightbox(direction) {
+    const photoItems = document.querySelectorAll(".photo-item");
     currentPhotoIndex =
       (currentPhotoIndex + direction + photoItems.length) % photoItems.length;
-    openLightbox(currentPhotoIndex);
+    openLightbox(photoItems[currentPhotoIndex]);
   }
 
-  function initLightboxEvents() {
-    photoItems = Array.from(document.querySelectorAll(".photo-item"));
+  prevBtn.addEventListener("click", () => navigateLightbox(-1));
+  nextBtn.addEventListener("click", () => navigateLightbox(1));
 
-    photoItems.forEach((item, index) => {
-      const fullscreenBtn = item.querySelector(".photo-fullscreen");
-      fullscreenBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openLightbox(index);
-      });
-    });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      lightbox.classList.remove("active");
+      lightboxImage.src = "";
+    }
+  });
 
-    // Boutons navigation
-    prevBtn.addEventListener("click", () => navigateLightbox(-1));
-    nextBtn.addEventListener("click", () => navigateLightbox(1));
-    closeBtn.addEventListener("click", closeLightbox);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeLightbox();
-      }
-    });
-  }
-
-  document.addEventListener("galleryUpdated", initLightboxEvents);
+  // Ré-initialiser après filtrage AJAX
+  document.addEventListener("galleryUpdated", () => {
+    initLightboxEvents();
+  });
 
   initLightboxEvents();
 });
