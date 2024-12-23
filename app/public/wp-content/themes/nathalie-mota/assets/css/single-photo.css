@@ -2,9 +2,7 @@
 .photo-template-container {
   width: 1200px;
   margin: auto;
-  /* display: flex;
   flex-direction: column;
-  flex-wrap: wrap; */
 }
 
 .photo-content-container {
@@ -16,7 +14,7 @@
 
 .photo-interaction-bar {
   width: 100%;
-  padding: 30px 50px;
+  height: 118px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,16 +23,21 @@
 /*** Section GAUCHE ***/
 .photo-info-left {
   width: 45%;
-  /* padding: 20px; */
-  height: 70vh;
+  height: calc(100vh - 118px - 120px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   border-bottom: 1px solid black;
 }
 
+.photo-info-left h2 {
+  line-height: 1;
+  padding: 20px 0;
+}
+
 .photo-info-left p {
   text-transform: uppercase;
+  margin: 10px 0;
 }
 
 .photo-info-left p a {
@@ -49,8 +52,8 @@
 
 .photo-info-right img {
   display: block;
+  height: calc(100vh - 118px - 120px);
   max-width: 100%;
-  height: 70vh;
   object-fit: contain;
 }
 

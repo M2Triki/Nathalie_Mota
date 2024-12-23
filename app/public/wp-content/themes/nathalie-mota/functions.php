@@ -36,6 +36,9 @@ function nathalie_mota_enqueue_styles_scripts() {
     // Charger lightbox JS
     wp_enqueue_script('nathalie-mota-lightbox-script', get_stylesheet_directory_uri() . '/js/lightbox.js', array('jquery'), null, true);
 
+    // Charger Banner JS
+    wp_enqueue_script('banner', get_stylesheet_directory_uri() . '/js/banner.js', array('jquery'), null, true);
+
     // Ajouter les données AJAX (localize script)
     wp_localize_script('nathalie-mota-script', 'nathalieMota', array(
         'ajax_url' => admin_url('admin-ajax.php'),

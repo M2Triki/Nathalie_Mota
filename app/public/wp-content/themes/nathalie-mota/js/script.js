@@ -151,7 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   filters.forEach((filter) => {
     filter.addEventListener("click", function () {
-      const type = this.dataset.category ? "data-category" : "data-format";
+      const type = this.dataset.category
+        ? "data-category"
+        : this.dataset.format
+        ? "data-format"
+        : "data-sort";
 
       document
         .querySelectorAll(`[${type}]`)

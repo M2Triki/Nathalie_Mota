@@ -5,7 +5,7 @@
 
     <div class="lightbox__content">
         <button class="lightbox__prev" aria-label="Précédente">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/nav/arrow.svg" alt="Précédente">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/nav/arrow.svg" alt="Précédente">Précedente 
         </button>
 
         <div class="lightbox__image-container">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <button class="lightbox__next" aria-label="Suivante">
+        <button class="lightbox__next" aria-label="Suivante"> Suivante
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/nav/arrow.svg" alt="Suivante">
         </button>
     </div>
