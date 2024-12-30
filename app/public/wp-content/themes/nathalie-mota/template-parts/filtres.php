@@ -27,7 +27,7 @@
 
     <div class="filters-right">
         <div class="filter-dropdown">
-            <button class="filter-button">Trier par date</button>
+            <button class="filter-button">Trier par</button>
             <ul class="filter-options">
                 <li data-sort="DESC">Les plus récentes</li>
                 <li data-sort="ASC">Les plus anciennes</li>

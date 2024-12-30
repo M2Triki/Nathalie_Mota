@@ -166,3 +166,65 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Fleches de navigation sur les pages de photos
+document.addEventListener("DOMContentLoaded", function () {
+  const currentThumbnail = document.querySelector(".current-thumbnail");
+  const prevThumbnail = document.querySelector(".prev-thumbnail");
+  const nextThumbnail = document.querySelector(".next-thumbnail");
+  const prevLink = document.querySelector(".prev-link");
+  const nextLink = document.querySelector(".next-link");
+
+  function showCurrentThumbnail() {
+    if (currentThumbnail) currentThumbnail.style.display = "block";
+    if (prevThumbnail) prevThumbnail.style.display = "none";
+    if (nextThumbnail) nextThumbnail.style.display = "none";
+  }
+
+  function showPrevThumbnail() {
+    if (currentThumbnail) currentThumbnail.style.display = "none";
+    if (prevThumbnail) prevThumbnail.style.display = "block";
+    if (nextThumbnail) nextThumbnail.style.display = "none";
+  }
+
+  function showNextThumbnail() {
+    if (currentThumbnail) currentThumbnail.style.display = "none";
+    if (prevThumbnail) prevThumbnail.style.display = "none";
+    if (nextThumbnail) nextThumbnail.style.display = "block";
+  }
+
+  if (prevLink) {
+    prevLink.addEventListener("mouseover", showPrevThumbnail);
+    prevLink.addEventListener("mouseout", showCurrentThumbnail);
+  }
+
+  if (nextLink) {
+    nextLink.addEventListener("mouseover", showNextThumbnail);
+    nextLink.addEventListener("mouseout", showCurrentThumbnail);
+  }
+
+  showCurrentThumbnail();
+});
+
+// Modal mobile
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".menu");
+  const modal = document.getElementById("modal-contact");
+  const closeBtn = document.querySelector(".close");
+
+  menuToggle.addEventListener("click", function () {
+    menu.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});

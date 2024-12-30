@@ -8,32 +8,31 @@
 </head>
 <body <?php body_class(); ?>>
     <header>
-        <!-- Affichage du logo modifiable via le Customizer -->
         <div class="logo">
             <a href="<?php echo home_url(); ?>">
                 <?php 
                 if ( has_custom_logo() ) {
-                    the_custom_logo(); // Affiche le logo personnalisé défini dans le Customizer
+                    the_custom_logo(); 
                 } else {
-                    echo '<h1>' . get_bloginfo( 'name' ) . '</h1>'; // Affiche le titre du site si aucun logo n'est défini
+                    echo '<h1>' . get_bloginfo( 'name' ) . '</h1>'; 
                 }
                 ?>
             </a>
         </div>
         
-        <!-- Affichage du menu principal modifiable via le back-office -->
-        <nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav class="menu">
             <?php
             wp_nav_menu(array(
-                'theme_location' => 'menu-principal', // L'emplacement du menu que tu as défini dans functions.php
-                'container' => false,                // Pas de conteneur supplémentaire
-                'menu_class' => 'menu-principal',    // Classe CSS pour styliser le menu si nécessaire
+                'theme_location' => 'menu-principal',
+                'container' => false,                
+                'menu_class' => 'menu-principal', 
             ));
             ?>
         </nav>
     </header>
-        <!-- Ajout contact modal -->
-        <?php get_template_part('template-parts/contact-modal'); ?>
-    <?php wp_footer(); ?>
-</body>
-</html>

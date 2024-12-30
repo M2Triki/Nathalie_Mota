@@ -12,7 +12,7 @@
 
         <div class="photo-info-right">
             <?php if (has_post_thumbnail()) : ?>
-                <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>">
+                <img id="main-photo" src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>">
             <?php endif; ?>
         </div>
 
@@ -25,6 +25,16 @@
                 <?php
                 $prev_post = get_previous_post();
                 $next_post = get_next_post();
+    
+                echo '<div class="thumbnail-container">';
+                if ($prev_post) :
+                    echo '<img class="thumbnail prev-thumbnail" src="' . get_the_post_thumbnail_url($prev_post->ID, 'thumbnail') . '" alt="Précedent">';
+                endif;
+                echo '<img class="thumbnail current-thumbnail" src="' . get_the_post_thumbnail_url(get_the_ID(), 'thumbnail') . '" alt="Actuelle">';
+                if ($next_post) :
+                    echo '<img class="thumbnail next-thumbnail" src="' . get_the_post_thumbnail_url($next_post->ID, 'thumbnail') . '" alt="Suivant">';
+                endif;
+                echo '</div>';
     
                 if ($prev_post) :
                     echo '<a href="' . get_permalink($prev_post->ID) . '" class="photo-nav-link prev-link">';
@@ -40,10 +50,7 @@
                 ?>
             </div>
         </div>
-        
-
     </div>
-
 
     <div class="related-photos">
         <h3>Vous aimerez aussi</h3>
@@ -56,8 +63,8 @@
                 'tax_query' => array(
                     array(
                         'taxonomy' => 'categorie',
-                        'field' => 'slug',
-                        'terms' => wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')),
+                        'field' => 'term_id',
+                        'terms' => wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids')),
                     ),
                 ),
             ));

@@ -1,9 +1,72 @@
 /*** HEADER ***/
 header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 15px 50px;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  background-color: #000;
+  border-radius: 3px;
+}
+
+.menu-toggle.active span {
+  background-color: transparent;
+}
+
+.menu-toggle.active::before,
+.menu-toggle.active::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 3px;
+}
+
+.menu-toggle.active::before {
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active::after {
+  transform: rotate(-45deg);
+}
+
+.menu {
+  display: flex;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.menu ul li {
+  margin: 0 20px;
+}
+
+.menu ul li a {
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 nav ul {
@@ -22,8 +85,53 @@ nav ul li a:hover {
   font-weight: 700;
 }
 
+/* Modal de contact */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /*** Hero Banner ***/
 .hero-banner {
+  position: relative;
   background-size: cover;
   background-position: center;
   height: 962px;
@@ -38,9 +146,31 @@ nav ul li a:hover {
 }
 
 .hero-banner h1 {
+  position: absolute;
+  z-index: 2;
   -webkit-text-stroke: 2px rgb(255, 255, 255);
   color: transparent;
   font-style: italic;
+}
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 /*** FILTRES ***/
@@ -61,6 +191,9 @@ nav ul li a:hover {
 }
 
 .filter-button {
+  width: 260px;
+  text-transform: uppercase;
+  text-align: left;
   background-color: white;
   border: 1px solid #ccc;
   padding: 10px 15px;
@@ -76,13 +209,13 @@ nav ul li a:hover {
 }
 
 .filter-options {
+  width: 260px;
   list-style: none;
   margin: 0;
   padding: 0;
   border: 1px solid #ccc;
   background-color: white;
   position: absolute;
-  width: 150px;
   display: none;
   z-index: 1000;
   border-radius: 5px;
@@ -98,6 +231,7 @@ nav ul li a:hover {
 .filter-options li:hover {
   background-color: #e00000;
   color: white;
+  border-radius: 5px;
 }
 
 .filter-options li.selected {
@@ -216,4 +350,179 @@ nav ul li a:hover {
   margin: 0;
   padding: 20px 0;
   border-top: 1px solid black;
+}
+
+/***** Media Queries *****/
+/*** Smartphones ***/
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .hero-banner {
+    height: 400px;
+    font-size: 2rem;
+  }
+
+  .photo-gallery {
+    width: 100%;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .photo-item {
+    height: auto;
+    width: 100%;
+  }
+
+  .photo-thumbnail {
+    height: auto;
+  }
+
+  .photo-info-left,
+  .photo-info-right {
+    width: 100%;
+  }
+
+  .photo-interaction-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .photo-navigation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .thumbnail-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: auto;
+  }
+
+  .photo-filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .filters-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .footer-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e00000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu ul li {
+    margin: 20px 0;
+  }
+
+  .menu ul li a {
+    color: #fff;
+    font-size: 24px;
+  }
+}
+
+/*** Tablettes ***/
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .hero-banner {
+    height: 600px;
+    font-size: 2.5rem;
+  }
+
+  .photo-gallery {
+    width: 100%;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .photo-item {
+    height: auto;
+    width: 100%;
+  }
+
+  .photo-thumbnail {
+    height: auto;
+  }
+
+  .photo-info-left,
+  .photo-info-right {
+    width: 100%;
+  }
+
+  .photo-interaction-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .photo-navigation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .thumbnail-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: auto;
+  }
 }
