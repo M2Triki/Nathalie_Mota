@@ -6,6 +6,8 @@ header {
   padding: 20px;
   background-color: #fff;
   position: relative;
+  max-width: 1240px;
+  margin: auto;
 }
 
 .custom-logo-link img {
@@ -504,8 +506,14 @@ nav ul li a:hover {
   .photo-item {
     height: auto;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  a.photo-link {
+    transform: scale(1.5); /* Zoom sur les photos pour le reponsive */
+  }
   .photo-thumbnail {
     height: auto;
   }
