@@ -6,7 +6,7 @@
         <?php
         $photos = new WP_Query(array(
             'post_type' => 'photo',
-            'posts_per_page' => -1, 
+            'posts_per_page' => 1, 
             'orderby' => 'rand', 
             'tax_query' => array(
                 array(
@@ -19,7 +19,7 @@
 
         if ($photos->have_posts()) :
             while ($photos->have_posts()) : $photos->the_post(); ?>
-                <img class="hero-image" src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>" style="display: none;">
+                <img class="hero-image" src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>">
             <?php endwhile;
             wp_reset_postdata();
         else : ?>

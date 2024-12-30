@@ -1,4 +1,5 @@
 /***** CONTACT MODAL *****/
+/* Modal de contact */
 .modal {
   display: none;
   position: fixed;
@@ -21,7 +22,6 @@
   width: 80%;
   max-width: 600px;
   text-align: center;
-
   max-height: 100vh;
   overflow-y: auto;
 }

@@ -30,9 +30,11 @@
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'menu-principal',
-                'container' => false,                
+                'container' => false,
                 'menu_class' => 'menu-principal', 
             ));
             ?>
         </nav>
     </header>
+
+    <?php get_template_part('template-parts/contact-modal'); ?>
