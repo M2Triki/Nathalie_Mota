@@ -1,7 +1,10 @@
 <div class="photo-filters">
     <div class="filters-left">
         <div class="filter-dropdown">
-            <button class="filter-button">Catégories</button>
+            <button class="filter-button">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/chevron.png" class="filter-arrow" alt="Flèche vers le bas">
+                Catégories
+            </button>
             <ul class="filter-options">
                 <?php
                 $categories = get_terms(array('taxonomy' => 'categorie', 'hide_empty' => false));
@@ -13,7 +16,10 @@
         </div>
 
         <div class="filter-dropdown">
-            <button class="filter-button">Formats</button>
+            <button class="filter-button">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/chevron.png" class="filter-arrow" alt="Flèche vers le bas">
+                Formats
+            </button>
             <ul class="filter-options">
                 <?php
                 $formats = get_terms(array('taxonomy' => 'format', 'hide_empty' => false));
@@ -27,7 +33,10 @@
 
     <div class="filters-right">
         <div class="filter-dropdown">
-            <button class="filter-button">Trier par</button>
+            <button class="filter-button">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/chevron.png" class="filter-arrow" alt="Flèche vers le bas">
+                Trier par
+            </button>
             <ul class="filter-options">
                 <li data-sort="DESC">Les plus récentes</li>
                 <li data-sort="ASC">Les plus anciennes</li>

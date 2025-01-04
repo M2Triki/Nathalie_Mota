@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   dropdowns.forEach((dropdown) => {
     const button = dropdown.querySelector(".filter-button");
     const options = dropdown.querySelector(".filter-options");
+    const arrow = button.querySelector(".filter-arrow");
 
     button.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -91,24 +92,35 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdowns.forEach((d) => {
         if (d !== dropdown) {
           d.classList.remove("active");
+          const otherArrow = d.querySelector(".filter-arrow");
+          if (otherArrow) {
+            otherArrow.style.transform = "rotate(0deg)";
+          }
         }
       });
+
+      if (dropdown.classList.contains("active")) {
+        arrow.style.transform = "rotate(180deg)";
+      } else {
+        arrow.style.transform = "rotate(0deg)";
+      }
     });
 
     options.addEventListener("click", function (e) {
-      if (e.target.tagName === "LI") {
-        const selectedValue = e.target.textContent;
-
-        button.textContent = selectedValue;
-
-        dropdown.classList.remove("active");
-      }
+      e.stopPropagation();
+      dropdown.classList.remove("active");
+      arrow.style.transform = "rotate(0deg)";
     });
   });
 
-  // Fermer les dropdowns si clic en dehors
   document.addEventListener("click", function () {
-    dropdowns.forEach((dropdown) => dropdown.classList.remove("active"));
+    dropdowns.forEach((dropdown) => {
+      dropdown.classList.remove("active");
+      const arrow = dropdown.querySelector(".filter-arrow");
+      if (arrow) {
+        arrow.style.transform = "rotate(0deg)";
+      }
+    });
   });
 });
 

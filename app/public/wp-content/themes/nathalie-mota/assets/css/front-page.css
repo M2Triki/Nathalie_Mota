@@ -183,8 +183,8 @@ nav ul li a:hover {
 /*** FILTRES ***/
 .photo-filters {
   display: flex;
-  justify-content: space-between; /* Espace entre les deux groupes de filtres */
-  align-items: center; /* Centrer verticalement */
+  justify-content: space-between;
+  align-items: center;
   padding: 40px 0px 0 0;
   flex-wrap: wrap;
 }
@@ -199,6 +199,9 @@ nav ul li a:hover {
 }
 
 .filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 260px;
   text-transform: uppercase;
   text-align: left;
@@ -210,6 +213,18 @@ nav ul li a:hover {
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease;
+}
+
+.filter-arrow {
+  /* width: 16px; */
+  /* height: 16px; */
+  order: 2;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.filter-dropdown.active .filter-arrow {
+  transform: rotate(180deg);
 }
 
 .filter-button:hover {
