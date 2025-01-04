@@ -140,3 +140,40 @@ function nathalie_mota_ajax_load_photos() {
 // Enregistrement des hooks AJAX
 add_action('wp_ajax_load_photos', 'nathalie_mota_ajax_load_photos');
 add_action('wp_ajax_nopriv_load_photos', 'nathalie_mota_ajax_load_photos');
+
+// Bouton "Charger plus" en front page
+function nathalie_mota_load_more_photos() {
+    $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+
+    $photos = new WP_Query(array(
+        'post_type' => 'photo',
+        'posts_per_page' => 8,
+        'offset' => $offset,
+        'order' => 'DESC',
+    ));
+
+    $photos_data = array();
+
+    if ($photos->have_posts()) :
+        while ($photos->have_posts()) : $photos->the_post();
+            $photos_data[] = array(
+                'link' => get_permalink(),
+                'featured_media_src_url' => get_the_post_thumbnail_url(get_the_ID(), 'full'),
+                'title' => get_the_title(),
+                'eye_icon' => get_stylesheet_directory_uri() . '/assets/img/oeil.png',
+                'reference' => get_post_meta(get_the_ID(), 'reference', true),
+                'category' => get_the_terms(get_the_ID(), 'categorie')[0]->name,
+                'fullscreen_image' => get_the_post_thumbnail_url(get_the_ID(), 'full'),
+                'fullscreen_icon' => get_stylesheet_directory_uri() . '/assets/img/icon_fullscreen.png',
+            );
+        endwhile;
+        wp_reset_postdata();
+    endif;
+
+    wp_send_json_success(array(
+        'photos' => $photos_data,
+        'has_more' => $photos->found_posts > $offset + $photos->post_count,
+    ));
+}
+add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');

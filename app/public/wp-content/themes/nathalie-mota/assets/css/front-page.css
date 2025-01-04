@@ -376,6 +376,25 @@ nav ul li a:hover {
   border-top: 1px solid black;
 }
 
+.load-more {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #e00000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.load-more:hover {
+  background-color: #c00000;
+}
+
 /***** Media Queries *****/
 /*** Smartphones ***/
 @media (max-width: 600px) {

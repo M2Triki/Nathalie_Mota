@@ -240,3 +240,54 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loadMoreBtn = document.getElementById("load-more");
+  const photoGrid = document.getElementById("photo-grid");
+
+  loadMoreBtn.addEventListener("click", function () {
+    const params = new URLSearchParams({
+      action: "load_more_photos",
+      offset: photoGrid.children.length,
+    });
+
+    fetch(`/wp-admin/admin-ajax.php?${params.toString()}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success && data.data.photos) {
+          data.data.photos.forEach((photo) => {
+            const photoItem = document.createElement("div");
+            photoItem.classList.add("photo-item");
+            photoItem.innerHTML = `
+              <a href="${photo.link}">
+                <img src="${photo.featured_media_src_url}" alt="${photo.title}" class="photo-thumbnail">
+              </a>
+              <div class="photo-hover">
+                <a href="${photo.link}" class="photo-eye">
+                  <img src="${photo.eye_icon}" alt="Voir les détails" class="icon-eye">
+                </a>
+                <div class="photo-info">
+                  <span class="photo-reference">${photo.reference}</span>
+                  <span class="photo-category">${photo.category}</span>
+                </div>
+                <button class="photo-fullscreen" data-image="${photo.fullscreen_image}">
+                  <img src="${photo.fullscreen_icon}" alt="Plein écran" class="icon-fullscreen">
+                </button>
+              </div>
+            `;
+            photoGrid.appendChild(photoItem);
+          });
+
+          // Réinitialiser les événements de la lightbox
+          initLightboxEvents();
+
+          if (!data.data.has_more) {
+            loadMoreBtn.style.display = "none";
+          }
+        } else {
+          console.error("Erreur lors du chargement des photos.");
+        }
+      })
+      .catch((error) => console.error("Erreur AJAX :", error));
+  });
+});

@@ -61,4 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initLightboxEvents();
+
+  // Rendre la fonction accessible globalement
+  window.initLightboxEvents = initLightboxEvents;
 });

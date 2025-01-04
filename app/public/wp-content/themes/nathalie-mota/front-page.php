@@ -49,6 +49,7 @@
                 <p>Aucune photo trouvée.</p>
             <?php endif; ?>
         </div>
+        <button id="load-more" class="load-more">Charger plus</button>
     </div>
 </div>
 
