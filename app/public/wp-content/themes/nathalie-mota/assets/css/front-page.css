@@ -377,22 +377,21 @@ nav ul li a:hover {
 }
 
 .load-more {
-  display: block;
-  width: 200px;
+  font-family: var(--font-heading);
+  width: 272px;
+  height: 50px;
   margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #e00000;
-  color: #fff;
+  background-color: #d8d8d8;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
-  text-align: center;
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
 .load-more:hover {
   background-color: #c00000;
+  color: white;
 }
 
 /***** Media Queries *****/
@@ -615,6 +614,6 @@ nav ul li a:hover {
 
   .menu ul li a {
     color: #fff;
-    font-size: 24px;
+    font-size: 44px;
   }
 }

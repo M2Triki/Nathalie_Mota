@@ -242,52 +242,74 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const loadMoreBtn = document.getElementById("load-more");
+  const filters = document.querySelectorAll(".filter-options li");
   const photoGrid = document.getElementById("photo-grid");
+  const loadMoreBtn = document.getElementById("load-more");
 
-  loadMoreBtn.addEventListener("click", function () {
-    const params = new URLSearchParams({
-      action: "load_more_photos",
-      offset: photoGrid.children.length,
-    });
+  function loadPhotos(offset = 0, append = false) {
+    const category =
+      document.querySelector("[data-category].selected")?.dataset.category ||
+      "";
+    const format =
+      document.querySelector("[data-format].selected")?.dataset.format || "";
+    const order =
+      document.querySelector("[data-sort].selected")?.dataset.sort || "DESC";
 
-    fetch(`/wp-admin/admin-ajax.php?${params.toString()}`)
+    const data = new FormData();
+    data.append("action", "load_photos");
+    data.append("nonce", nathalieMota.nonce);
+    data.append("offset", offset);
+    data.append("category", category);
+    data.append("format", format);
+    data.append("order", order);
+
+    fetch(nathalieMota.ajax_url, {
+      method: "POST",
+      body: data,
+    })
       .then((response) => response.json())
-      .then((data) => {
-        if (data.success && data.data.photos) {
-          data.data.photos.forEach((photo) => {
-            const photoItem = document.createElement("div");
-            photoItem.classList.add("photo-item");
-            photoItem.innerHTML = `
-              <a href="${photo.link}">
-                <img src="${photo.featured_media_src_url}" alt="${photo.title}" class="photo-thumbnail">
-              </a>
-              <div class="photo-hover">
-                <a href="${photo.link}" class="photo-eye">
-                  <img src="${photo.eye_icon}" alt="Voir les détails" class="icon-eye">
-                </a>
-                <div class="photo-info">
-                  <span class="photo-reference">${photo.reference}</span>
-                  <span class="photo-category">${photo.category}</span>
-                </div>
-                <button class="photo-fullscreen" data-image="${photo.fullscreen_image}">
-                  <img src="${photo.fullscreen_icon}" alt="Plein écran" class="icon-fullscreen">
-                </button>
-              </div>
-            `;
-            photoGrid.appendChild(photoItem);
-          });
+      .then((result) => {
+        if (result.success) {
+          if (append) {
+            photoGrid.insertAdjacentHTML("beforeend", result.data.html);
+          } else {
+            photoGrid.innerHTML = result.data.html;
+          }
+          document.dispatchEvent(new Event("galleryUpdated"));
 
-          // Réinitialiser les événements de la lightbox
-          initLightboxEvents();
-
-          if (!data.data.has_more) {
+          if (!result.data.has_more) {
             loadMoreBtn.style.display = "none";
+          } else {
+            loadMoreBtn.style.display = "block";
           }
         } else {
           console.error("Erreur lors du chargement des photos.");
         }
       })
       .catch((error) => console.error("Erreur AJAX :", error));
+  }
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", function () {
+      const type = this.dataset.category
+        ? "data-category"
+        : this.dataset.format
+        ? "data-format"
+        : "data-sort";
+
+      document
+        .querySelectorAll(`[${type}]`)
+        .forEach((f) => f.classList.remove("selected"));
+      this.classList.add("selected");
+
+      loadPhotos();
+    });
   });
+
+  loadMoreBtn.addEventListener("click", function () {
+    const offset = photoGrid.children.length;
+    loadPhotos(offset, true);
+  });
+
+  loadPhotos();
 });

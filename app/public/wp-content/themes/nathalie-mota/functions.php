@@ -74,68 +74,60 @@ function afficher_filtres_photos() {
 }
 
 add_shortcode('filtres_photos', 'afficher_filtres_photos');
-function nathalie_mota_ajax_load_photos() {
+function nathalie_mota_load_photos() {
     check_ajax_referer('nathalie_mota_nonce', 'nonce');
 
-    // Récupération et nettoyage des données des filtres
-    $category_slug = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
-    $format_slug = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+    $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
-    // Préparation de la requête WP_Query
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 8,
-        'paged' => $paged,
-        'orderby' => 'date',
+        'offset' => $offset,
         'order' => $order,
-        'tax_query' => array('relation' => 'AND'),
+        'tax_query' => array(
+            'relation' => 'AND',
+        ),
     );
 
-    if ($category_slug) {
+    if ($category) {
         $args['tax_query'][] = array(
             'taxonomy' => 'categorie',
             'field' => 'slug',
-            'terms' => $category_slug,
+            'terms' => $category,
         );
     }
 
-    if ($format_slug) {
+    if ($format) {
         $args['tax_query'][] = array(
             'taxonomy' => 'format',
             'field' => 'slug',
-            'terms' => $format_slug,
+            'terms' => $format,
         );
     }
 
-    $query = new WP_Query($args);
+    $photos = new WP_Query($args);
 
-    $photos_html = '';
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            ob_start();
-            ?>
-            
-            <?php get_template_part('template-parts/photo_block'); ?>
+    ob_start();
+    if ($photos->have_posts()) :
+        while ($photos->have_posts()) : $photos->the_post();
+            get_template_part('template-parts/photo_block');
+        endwhile;
+        wp_reset_postdata();
+    else :
+        echo '<p>Aucune photo trouvée.</p>';
+    endif;
+    $photos_html = ob_get_clean();
 
-            <?php
-            $photos_html .= ob_get_clean();
-        }
-    } else {
-        $photos_html = '<p>Aucune photo trouvée.</p>';
-    }
-
-    // Réinitialisation des données globales de WordPress
-    wp_reset_postdata();
-
-    // Réponse JSON
     wp_send_json_success(array(
         'html' => $photos_html,
-        'max_pages' => $query->max_num_pages,
+        'has_more' => $photos->found_posts > $offset + $photos->post_count,
     ));
 }
+add_action('wp_ajax_load_photos', 'nathalie_mota_load_photos');
+add_action('wp_ajax_nopriv_load_photos', 'nathalie_mota_load_photos');
 
 // Enregistrement des hooks AJAX
 add_action('wp_ajax_load_photos', 'nathalie_mota_ajax_load_photos');

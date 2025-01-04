@@ -36,6 +36,7 @@
                 endif;
                 echo '</div>';
     
+                echo '<div class="arrow-navigation">';
                 if ($prev_post) :
                     echo '<a href="' . get_permalink($prev_post->ID) . '" class="photo-nav-link prev-link">';
                     echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/precedent.png" alt="Précedent" class="nav-arrow">';
@@ -47,6 +48,8 @@
                     echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/suivant.png" alt="Suivant" class="nav-arrow">';
                     echo '</a>';
                 endif;
+                echo '</div>';
+
                 ?>
             </div>
         </div>
